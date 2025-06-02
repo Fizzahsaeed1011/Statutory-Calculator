@@ -33,12 +33,12 @@ input[type="number"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 16px;
-  border: 2px solid #00a6c5;
+  border: 2px solid #7fc28f;
   border-radius: 8px;
   font-size: 16px;
   box-sizing: border-box;
   background-color: white;
-  color: #00a6c5;
+  color: #7fc28f;
 }
 
 /* Button container to separate buttons */
