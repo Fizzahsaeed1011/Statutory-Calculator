@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'Articulat CF Light';
+  src: local('Articulat CF Light'), url('./fonts/ArticulatCF-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Articulat CF Bold';
+  src: local('Articulat CF Bold'), url('./fonts/ArticulatCF-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Articulat CF Light', Arial, sans-serif;
+  color: #192543;
+  background-color: #fff;
+  margin: 30px;
+  line-height: 1.5;
+}
+
+h1 {
+  font-family: 'Articulat CF Bold', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1em;
+  color: #192543;
+}
+
+form {
+  max-width: 400px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3em;
+  font-weight: 700;
+  font-family: 'Articulat CF Bold', Arial, sans-serif;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 1.2em;
+  border: 2px solid #7fc28f;
+  border-radius: 4px;
+  font-family: 'Articulat CF Light', Arial, sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #192543;
+  box-sizing: border-box;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #07b0a0;
+  box-shadow: 0 0 4px #07b0a0;
+}
+
+button {
+  background-color: #07b0a0;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-family: 'Articulat CF Bold', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+button:focus {
+  background-color: #059486;
+  outline: none;
+}
+
+#result {
+  margin-top: 1.5em;
+  font-family: 'Articulat CF Bold', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #192543;
+}
