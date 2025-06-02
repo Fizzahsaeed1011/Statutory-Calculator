@@ -1,4 +1,4 @@
-/* Base reset and background */
+/* Base reset and background */ 
 html, body {
   margin: 0;
   padding: 0;
@@ -41,9 +41,17 @@ input[type="number"] {
   color: #192543;
 }
 
+/* Button container to separate buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 /* Buttons */
 button {
-  width: 100%;
+  flex: 1;
   padding: 12px;
   font-size: 16px;
   border: none;
@@ -55,11 +63,10 @@ button {
 button#calculateBtn {
   background-color: #07b0a0;
   color: white;
-  margin-bottom: 15px;
 }
 
 button#resetBtn {
-  background-color: #ccc;
+  background-color: #7fc28f;
   color: #192543;
 }
 
