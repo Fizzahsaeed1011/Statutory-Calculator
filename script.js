@@ -1,4 +1,4 @@
-document.getElementById('calculate-btn').addEventListener('click', function () {
+document.getElementById('calculateBtn').addEventListener('click', function () {
   const age = parseInt(document.getElementById('age').value);
   const years = parseInt(document.getElementById('years').value);
   let pay = parseFloat(document.getElementById('pay').value);
@@ -47,8 +47,8 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
   resultEl.textContent = `Statutory Redundancy Pay: £${redundancy}`;
 });
 
-// Reset button functionality
-document.getElementById('reset-btn').addEventListener('click', function () {
+// ✅ Reset button functionality (corrected ID)
+document.getElementById('resetBtn').addEventListener('click', function () {
   document.getElementById('age').value = '';
   document.getElementById('years').value = '';
   document.getElementById('pay').value = '';
