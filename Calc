@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Statutory Redundancy Calculator</title>
+  <style>
+    /* Fonts: Replace with your Articulat CF fonts or fallback */
+    @font-face {
+      font-family: 'Articulat CF Light';
+      src: local('Arial'); /* fallback, replace with your font source */
+      font-weight: 300;
+    }
+    @font-face {
+      font-family: 'Articulat CF Bold';
+      src: local('Arial Black'); /* fallback, replace with your font source */
+      font-weight: 700;
+    }
+
+    body {
+      font-family: 'Articulat CF Light', Arial, sans-serif;
+      background-color: #f8f9fa;
+      color: #192543;
+      padding: 20px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .calculator-container {
+      max-width: 480px;
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 16px;
+      font-weight: normal;
+      color: #192543;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 4px;
+      border: 2px solid #7fc28f;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Articulat CF Light', Arial, sans-serif;
+      color: #192543;
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+
+    input[type="number"]::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      margin-top: 24px;
+      width: 100%;
+      background-color: #07b0a0;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Articulat CF Bold', Arial, sans-serif;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #059c8d;
+    }
+
+    #result {
+      margin-top: 28px;
+      font-size: 18px;
+      font-family: 'Articulat CF Bold', Arial, sans-serif;
+      text-align: center;
+      color: #192543;
+      min-height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-container">
+    <label for="age">Age:</label>
+    <input type="number" id="age" min="16" max="100" placeholder="e.g. 35" required />
+
+    <label for="years">Years of Service:</label>
+    <input type="number" id="years" min="0" max="50" placeholder="e.g. 8" required />
+
+    <label for="pay">Weekly Gross Pay (£):</label>
+    <input type="number" id="pay" min="0" placeholder="e.g. 500" required />
+
+    <button id="calculate-btn">Calculate</button>
+
+    <p id="result"></p>
+  </div>
+
+  <script>
+    document.getElementById('calculate-btn').addEventListener('click', function () {
+      const age = parseInt(document.getElementById('age').value);
+      const years = parseInt(document.getElementById('years').value);
+      let pay = parseFloat(document.getElementById('pay').value);
+      const maxWeeklyPay = 643; // UK statutory cap 2024
+
+      const resultEl = document.getElementById('result');
+
+      if (isNaN(age) || isNaN(years) || isNaN(pay)) {
+        resultEl.textContent = 'Please fill in all fields correctly.';
+        return;
+      }
+
+      if (age < 16 || age > 100) {
+        resultEl.textContent = 'Age must be between 16 and 100.';
+        return;
+      }
+
+      if (years < 0 || years > 50) {
+        resultEl.textContent = 'Years of service must be between 0 and 50.';
+        return;
+      }
+
+      if (pay < 0) {
+        resultEl.textContent = 'Weekly pay must be a positive number.';
+        return;
+      }
+
+      pay = Math.min(pay, maxWeeklyPay);
+
+      let totalWeeks = 0;
+
+      for (let i = 0; i < years; i++) {
+        const yearAge = age - (years - 1 - i);
+
+        if (yearAge < 22) {
+          totalWeeks += 0.5;
+        } else if (yearAge < 41) {
+          totalWeeks += 1;
+        } else {
+          totalWeeks += 1.5;
+        }
+      }
+
+      const redundancy = (totalWeeks * pay).toFixed(2);
+
+      resultEl.textContent = `Statutory Redundancy Pay: £${redundancy}`;
+    });
+  </script>
+</body>
+</html>
