@@ -1,39 +1,48 @@
-document.getElementById('redundancyForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const age = parseInt(document.getElementById('age').value, 10);
-  const years = parseInt(document.getElementById('years').value, 10);
-  const pay = parseFloat(document.getElementById('pay').value);
+document.getElementById('calculate-btn').addEventListener('click', function () {
+  const age = parseInt(document.getElementById('age').value);
+  const years = parseInt(document.getElementById('years').value);
+  let pay = parseFloat(document.getElementById('pay').value);
+  const maxWeeklyPay = 643; // UK statutory cap 2024
 
   const resultEl = document.getElementById('result');
 
-  if (isNaN(age) || age < 16 || age > 100) {
-    resultEl.textContent = 'Please enter a valid age between 16 and 100.';
-    return;
-  }
-  if (isNaN(years) || years < 0 || years > 50) {
-    resultEl.textContent = 'Please enter valid years of service (0-50).';
-    return;
-  }
-  if (isNaN(pay) || pay < 0) {
-    resultEl.textContent = 'Please enter a valid weekly gross pay.';
+  if (isNaN(age) || isNaN(years) || isNaN(pay)) {
+    resultEl.textContent = 'Please fill in all fields correctly.';
     return;
   }
 
-  const weeklyPayCap = 643;
-  const cappedPay = Math.min(pay, weeklyPayCap);
+  if (age < 16 || age > 100) {
+    resultEl.textContent = 'Age must be between 16 and 100.';
+    return;
+  }
 
-  let totalPay = 0;
+  if (years < 0 || years > 50) {
+    resultEl.textContent = 'Years of service must be between 0 and 50.';
+    return;
+  }
 
-  for (let i = 1; i <= years; i++) {
-    if (age < 22) {
-      totalPay += 0.5 * cappedPay;
-    } else if (age >= 22 && age <= 40) {
-      totalPay += 1 * cappedPay;
-    } else if (age > 40) {
-      totalPay += 1.5 * cappedPay;
+  if (pay < 0) {
+    resultEl.textContent = 'Weekly pay must be a positive number.';
+    return;
+  }
+
+  pay = Math.min(pay, maxWeeklyPay);
+
+  let totalWeeks = 0;
+
+  for (let i = 0; i < years; i++) {
+    const yearAge = age - (years - 1 - i);
+
+    if (yearAge < 22) {
+      totalWeeks += 0.5;
+    } else if (yearAge < 41) {
+      totalWeeks += 1;
+    } else {
+      totalWeeks += 1.5;
     }
   }
 
-  resultEl.textContent = `Statutory Redundancy Pay: £${totalPay.toFixed(2)}`;
+  const redundancy = (totalWeeks * pay).toFixed(2);
+
+  resultEl.textContent = `Statutory Redundancy Pay: £${redundancy}`;
 });
