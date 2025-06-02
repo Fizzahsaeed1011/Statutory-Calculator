@@ -54,8 +54,8 @@ button {
 
 button#calculateBtn {
   background-color: #07b0a0;
-  color: white;
-  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 15px;
 }
 
 button#resetBtn {
