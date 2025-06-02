@@ -46,3 +46,11 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
 
   resultEl.textContent = `Statutory Redundancy Pay: £${redundancy}`;
 });
+
+// Reset button functionality
+document.getElementById('reset-btn').addEventListener('click', function () {
+  document.getElementById('age').value = '';
+  document.getElementById('years').value = '';
+  document.getElementById('pay').value = '';
+  document.getElementById('result').textContent = '';
+});
